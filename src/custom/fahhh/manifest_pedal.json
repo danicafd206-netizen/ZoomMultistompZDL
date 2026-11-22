@@ -1,0 +1,48 @@
+{
+  "effect_name": "Fahhh",
+  "comment": "PEDAL BUILD manifest for Fahhh. build.py reads THIS file. A pick-triggered sampler in the spirit of Zoom's stock Bomber: every picked note fires the embedded 'Fahhh' recording, optionally retuned to the note played, with its own delay that touches only the sample.",
+  "audio_func_name": "Fx_SFX_Fahhh",
+  "gid": 7,
+  "gid_comment": "0x07 = SFX category -> SONAME prefix ZDL_SFX_, next to Zoom's Bomber (SFX 7/32). The owner's choice; the rest of the pack is Delay (8). gid and the Fx_SFX_ prefix must match or the pedal freezes.",
+  "fxid": 492,
+  "fxid_comment": "Free in the SFX group (stock SFX uses 16-208; probes CtxWatch 447 and 448) and used nowhere else in the repo. Check repeat98's FXID registry before the first hardware flash.",
+  "fxid_version": "0.01",
+  "flags_byte": 1,
+  "dsp_cost": 40.0,
+  "dsp_cost_comment": "Estimate, not measured: two interpolated sample voices, a 1.2 s delay and onset tracking every sample, plus a YIN pitch search spread over ~30 blocks after each pick (5 lags x 256 points a block).",
+  "params": [
+    {
+      "name": "Mix",
+      "max": 100,
+      "default": 50,
+      "comment": "Dry/wet. 0 passes the guitar unchanged; 100 is the sample and its echoes only."
+    },
+    {
+      "name": "Time",
+      "max": 100,
+      "default": 35,
+      "comment": "Delay time on the sample only: 0 = no delay, then 20 ms .. 1.2 s (quadratic, 50 = 315 ms). Moves glide, so turning it bends the echoes."
+    },
+    {
+      "name": "Fdbk",
+      "max": 100,
+      "default": 40,
+      "comment": "Delay feedback on the sample only, 0 .. 0.92, darkened and soft-clipped in the loop."
+    },
+    {
+      "name": "Sens",
+      "max": 100,
+      "default": 50,
+      "comment": "Pick sensitivity: how quiet a pick still fires the sample. 0 = only hard picks, 100 = the lightest touch."
+    },
+    {
+      "name": "Pitch",
+      "max": 1,
+      "default": 1,
+      "comment": "0 = Orig: the recording at its own pitch. 1 = Note: retuned to the note picked (folded by octaves into B2..B4, the recording's own B3 +-1 octave)."
+    }
+  ],
+  "audio_nop": false,
+  "audio_nop_comment": "Set true for a UI-only smoke build before trusting the DSP.",
+  "params_order_comment": "Menu order chosen by the owner: Mix, Time, Fdbk on page 1 (and on the cover), Sens and the Pitch selector on page 2. fahhh.c reads each knob by name (FAHHH_<NAME>_SLOT), so reordering here changes no DSP."
+}

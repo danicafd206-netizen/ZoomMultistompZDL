@@ -107,10 +107,13 @@ def apply(c,name):
   glyph(c,'?',115,25);jack(c,8,31);c.hline(14,28,31)
  elif name=='Spiral':
   glyph(c,'Ф',51,28);ticks(c,64,116,33)
+ elif name=='Fahhh':
+  # Two mounting screws on the free edge; the bust fills the left one.
+  for y in (4,31):screw(c,121,y)
  elif name=='Taffy':
   glyph(c,'И',10,14);glyph(c,'?',113,14);ticks(c,42,86,33)
  # Several panels use the main console's ivory field instead of all-dark art.
- if name in {'Arrakis','Galactic','Howl','Hydra','Rewire','Scorch','Gyre','Tonic'}:
+ if name in {'Arrakis','Galactic','Howl','Hydra','Rewire','Scorch','Gyre','Tonic','Fahhh'}:
   for y in range(1,35):
    for x in range(1,127):c.px(x,y,1-c.pixels[y][x])
   # Small mounting slots anchor the illustrated panel to the instrument face.

@@ -30,6 +30,7 @@ SELECTORS={
  'Spiral':{'Div':groups(['1/32','1/16T','1/16','1/8T','1/8','1/8.','1/4','1/4.'],lambda r:ladder(r,[.125,.25,.375,.5,.625,.75,.875]))},
  'Rewire':{'Route':groups(['BDRCS','SCRDB','DSBCR','RCSBD','SBRDC'],lambda r:ladder(r,[.2,.4,.6,.8]))},
  'Stasis':{'Capture':groups(['Stomp','Release','Hold'],lambda r:r,2)},
+ 'Fahhh':{'Pitch':groups(['Orig','Note'],lambda r:r,1)},
  'RndmFLTR':{
    'Type':groups(['HPF','BPF','LPF'],lambda r:r,2),
    'Chara':groups(['2Pole','4Pole'],lambda r:r,1),

@@ -3,7 +3,7 @@ import math
 from screen_image import Canvas
 from stock_style_covers import fill,line,round_shape
 from lcd_geometry import PIXEL_ASPECT
-NAMES={'Oxide','Galactic','Flower','Shatter','Arrakis','Microlm','Corrupt','Klang','GenLoss','Scorch','Howl','Taffy','Dissolve','Mangle','Hydra','Rewire','Dustbox','Spiral','Gyre','Tonic'}
+NAMES={'Fahhh','Oxide','Galactic','Flower','Shatter','Arrakis','Microlm','Corrupt','Klang','GenLoss','Scorch','Howl','Taffy','Dissolve','Mangle','Hydra','Rewire','Dustbox','Spiral','Gyre','Tonic'}
 
 def word(c,text,x,y,sx=2,sy=2,v=1,lean=0):
     # Compact stock-style block lettering; all marks stay on the pixel grid.
@@ -133,6 +133,23 @@ def draw(name,labels):
         for y in (5,29):wave(c,5,121,y,3,40)
         word(c,'GYRE',31,10,sx=5,sy=3,lean=2)
         line(c,(115,2),(123,5));line(c,(123,5),(115,9))
+    elif name=='Fahhh':
+        # The speaking-head emoji: a profile bust facing right, mouth open,
+        # with sound arcs coming out of it. Rows are (left, right) edges; the
+        # LCD stretches Y by PIXEL_ASPECT, so 28 rows read as a natural bust.
+        HEAD=[(9,18),(7,20),(6,21),(5,22),(4,23),(4,23),(3,24),(3,24),(3,25),(3,25),
+              (3,24),(3,26),(3,28),(4,27),(4,24),(5,25),(5,21),(5,21),(6,24),(6,24),
+              (7,23),(9,20),(10,17),(10,17),(6,21),(2,25),(0,27),(0,28)]
+        hx,hy=4,4
+        for dy,(x0,x1) in enumerate(HEAD):c.hline(hx+x0,hx+x1,hy+dy)
+        fill(c,hx+19,hy+8,hx+20,hy+9,0)          # eye
+        mx,my=hx+23,hy+16                        # the open mouth
+        for r in (7,11,15):
+            for deg in range(-50,51,3):
+                a=math.radians(deg)
+                c.px(mx+round(r*math.cos(a)),my+round(r*math.sin(a)/PIXEL_ASPECT))
+        word(c,'FAHHH',54,11,sx=4,sy=3)
+        c.hline(54,117,28)
     elif name=='Oxide':
         c.rect(4,2,123,33);fill(c,7,5,120,30)
         word(c,'OXIDE',29,11,sx=4,sy=3,v=0)
